@@ -1,0 +1,39 @@
+class Solution {
+public:
+    string longestPalindrome(string s) {
+        if(s=="") {
+            return "";
+        }
+        if(s.length() == 1) {
+            return s;
+        }
+        int a1[1000][2];
+        int a2[1000][2];
+        string strMax = "";
+        for(int i = 0; i < s.length(); i++) {
+            if (i+1 >= s.length() || s[i] != s[i+1]) {
+                str[i] = s[i];
+                for(int j = i, k = i; j >= 0 && k < s.length(); j--, k++) {
+                    if(s[j] == s[k] && j != k) {
+                        str[i] = s[j] + str[i] + s[k];
+                    }
+                }
+                if(str[i].length() > strMax.length()) {
+                    strMax = str[i];
+                }
+            } else {
+                str1[i] = "";
+                for(int j = i, k = i + 1; j >= 0 && k < s.length(); j--, k++) {
+                    if(s[j] == s[k]) {
+                        str1[i] = s[j] + str1[i] + s[k];
+                    }
+                }
+                if(str1[i].length() > strMax.length()) {
+                    strMax = str1[i];
+                }
+            }
+        }
+
+        return strMax;
+    }
+};
